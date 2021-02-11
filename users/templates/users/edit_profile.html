@@ -1,5 +1,4 @@
-{% extends "tasks/layout.html" %} {% load static %} {% block cssfiles %} {%
-endblock cssfiles %} {% block searchform %}
+{% extends "tasks/layout.html" %} {% load static %} {% block searchform %}
 <form class="form-inline my-2 my-lg-0 ml-5"
       action="{% url 'search_users' %}"
       method="get">
@@ -37,4 +36,4 @@ endblock cssfiles %} {% block searchform %}
         </div>
     </div>
 </div>
-{% endblock content %} {% block jsfiles %}{% endblock jsfiles %}
+{% endblock content %}
