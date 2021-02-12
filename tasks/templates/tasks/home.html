@@ -1,112 +1,83 @@
-{% extends "tasks/layout.html" %} {% load static %} {% block searchform %}
-<form class="form-inline my-2 my-lg-0 ml-5"
-      action="{% url 'search_posts' %}"
-      method="get">
-    <input name="p" type="text" placeholder="Search posts.." />
-    <button class="btn btn-success my-2 my-sm-0 ml-4" type="submit">
-        Search
-    </button>
-</form>
-{% endblock searchform %} {% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col-md-8">
-            {% for post in posts %}
-            <div class="card card-signin my-5">
-                <div class="card-body">
-                    <a href="{{ post.user_name.profile.get_absolute_url }}">
-                        <img src="{{ post.user_name.profile.image.url }}"
-                             class="rounded-circle"
-                             width="30"
-                             height="30"
-                             alt="" />
-                    </a>
-                    <a class="text-dark"
-                       href="{{ post.user_name.profile.get_absolute_url }}"><b>{{ post.user_name }}</b></a>
-                    <br /><small class="text-muted">Posted on {{ post.date_posted }}</small>
-                    <br /><br />
-                    <p class="card-text text-dark">{{ post.description }}</p>
+{% extends "tasks/layout.html" %}
+{% load static %}
+{% block cssfiles %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+{% endblock cssfiles %}
+{% block content %}
+
+    <main>
+        <header>
+            <nav>
+                <img src="{% static 'img/Radiance.svg' %}" />
+                <div class="links">
+                    <a href="{% url 'login' %}">Login</a>
+                    <a href="{% url 'register' %}">Register</a>
                 </div>
-                <a href="{% url 'post-detail' post.id %}">
-                    <img class="card-img-top" src="{{ post.pic.url }}" alt="" />
-                </a>
-                {% if post.tags %}
-                <br />
-                <p class="text-danger ml-3">
-                    <b>Tags: <i>{{ post.tags }}</i></b>
-                </p>
-                {% endif %}
-                <div class="card-footer">
-                    <button class="btn btn-white mr-3 like" id="{{ post.id }}">
-                        {% if post in liked_post %}
-                        <a href="{% url 'post-like' %}"
-                           style="color: red"
-                           id="likebtn{{ post.id }}">
-                            Unlike
-                        </a>
-                        | {{post.likes.count}} {% else %}
-                        <a href="{% url 'post-like' %}"
-                           style="color: green"
-                           id="likebtn{{ post.id }}">
-                            Like
-                        </a>
-                        | {{post.likes.count}} {% endif %}
-                    </button>
-                    <a class="btn btn-outline-info" href="{% url 'post-detail' post.id %}">Comments | {{ post.details.count }}</a>
+            </nav>
+        </header>
+        <section class="info">
+            <h1 class="hero__font">The one-stop platform to help you manage all your tasks</h1>
+            <div class="icons">
+                <div class="icon">
+                    <img src="{% static 'img/icon1.svg' %}" />
+                    <div class="icon__info">
+                        <p class="icon__top">create</p>
+                        <p class="icon__bottom">Task Lists</p>
+                    </div>
+                </div>
+                <div class="icon">
+                    <img src="{% static 'img/icon2.svg' %}" />
+                    <div class="icon__info">
+                        <p class="icon__top">manage your</p>
+                        <p class="icon__bottom">Goals</p>
+                    </div>
+                </div>
+                <div class="icon">
+                    <img src="{% static 'img/icon3.svg' %}" />
+                    <div class="icon__info">
+                        <p class="icon__top">set up</p>
+                        <p class="icon__bottom">Rewards</p>
+                    </div>
+                </div>
+                <div class="icon">
+                    <img src="{% static 'img/icon4.svg' %}" />
+                    <div class="icon__info">
+                        <p class="icon__top">work with</p>
+                        <p class="icon__bottom">Friends</p>
+                    </div>
                 </div>
             </div>
-            {% endfor %}
-        </div>
-    </div>
-</div>
+        </section>
+    </main>
 
-{% if is_paginated %}
-	{% if page_obj.has_previous %}
-<a class="btn btn-outline-info mb-4" href="?page=1">First</a>
-<a class="btn btn-outline-info mb-4"
-   href="?page={{ page_obj.previous_page_number }}">Previous</a>
-	{% endif %}
-	{% for num in page_obj.paginator.page_range %}
-		{% if page_obj.number == num %}
-<a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
-		{% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-<a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
-		{% endif %}
-	{% endfor %}
-
-	{% if page_obj.has_next %}
-<a class="btn btn-outline-info mb-4"
-   href="?page={{ page_obj.next_page_number }}">Next</a>
-<a class="btn btn-outline-info mb-4"
-   href="?page={{ page_obj.paginator.num_pages }}">Last</a>
-	{% endif %}
-
-{% endif %}
-
+    <!-- JS Files -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    {% block jsfiles %}{% endblock jsfiles %}
 {% endblock content %}
+</body>
+</html>
 
-{% block jsfiles %}
-<script>
-    $(".like").click(function (e) {
-        var id = this.id;
-        var href = $(".like").find("a").attr("href");
-        e.preventDefault();
 
-        $.ajax({
-            url: href,
-            data: {
-                likeId: id,
-            },
-            success: function (response) {
-                if (response.liked) {
-                    $("#likebtn" + id).html("Unlike");
-                    $("#likebtn" + id).css("color", "red");
-                } else {
-                    $("#likebtn" + id).html("Like");
-                    $("#likebtn" + id).css("color", "green");
-                }
-            },
-        });
-    });
-</script>
-{% endblock jsfiles %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

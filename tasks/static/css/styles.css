@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin+Sketch&family=Lobster&family=Pacifico&display=swap');
+
+:root {
+    --accent: #EA9180;
+    --accentHover: #DE8A86;
+    --grey6: #F2F2F2;
+    --grey5: rgba(224,224,224,1);
+    --grey2: rgba(79,79,79,1);
+    --grey62: rgba(224,224,224,0.2);
+    --transition: all 0.3s ease 0s;
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    overflow: auto;
+}
+
+body {
+    background: linear-gradient(
+           var(--grey62),
+            var(--grey62)
+        ),
+        url(/static/img/radiance.jpg);
+
+    background-position: center;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+p, a, button{
+    font-family: "Lobster", sans-serif;
+    color: var(--grey6);
+    text-decoration: none;
+}
+
+a, button, .logo {
+    cursor: pointer;
+}
+
+main {
+    height: 100%;
+    display: grid;
+    grid-template-columns: minmax(60px, 1fr);
+}
