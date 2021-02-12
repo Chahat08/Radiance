@@ -125,6 +125,8 @@ nav {
 .icon__top {
     font-size: 1.5625rem;
     font-weight: 400;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    margin-bottom: auto;
 }
 
 
@@ -132,9 +134,44 @@ nav {
     font-size: 2rem;
     font-weight: 400;
     color: var(--lightyellow);
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 .placeholder__space {
     display: flex;
-    margin-top: 310px;
+    margin-top: 250px;
+}
+
+@media only screen and (max-width: 1100px){
+    .icon img{
+        height: 55px;
+        width: auto;
+    }
+
+    .icon__top {
+        font-size: 1rem;
+    }
+
+    .icon__bottom {
+        font-size: 1.125rem;
+    }
+
+    .hero__font {
+        font-size: 2.1875rem;
+    }
+
+}
+
+@media only screen and (max-width: 650px){
+    .info{
+        grid-column: 2 / span 6;
+    }
+    .icons {
+        flex-direction: column;
+    }
+    .icon {
+        margin-bottom: 20px;
+    }
 }
