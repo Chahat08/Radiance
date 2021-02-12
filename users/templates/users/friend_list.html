@@ -33,10 +33,18 @@
                     </div>
                 </div>
                 {% else %}
-                <h5>
-                    You don't have any friends added yet. Click
-                    <a href="{% url 'users_list' %}">here</a> to add some!
-                </h5>
+                
+                        
+                        <div class="card card-signin my-5">
+                            <div class="card-body">
+                                <h4 class="text-dark;">
+                                    You don't have any friends added yet. Click
+                                    <a href="{% url 'users_list' %}">here</a> to add some!
+                                </h4>
+                            </div>
+                        </div>    
+
+
                 {% endif %}
             </div>
             <div class="col-md-4">
