@@ -217,7 +217,7 @@ nav {
     grid-column: 5 / span 3;
     display: flex;
     overflow: scroll;
-    align-items: center;
+    align-items: flex-start;
     flex-wrap: wrap;
     justify-content: space-between;
 }

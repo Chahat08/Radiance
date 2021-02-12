@@ -1,14 +1,15 @@
-
-.container {
-    width: 600px;
-    margin: 0 auto;
+.containerTask {
+    width: 100%;
+    align-content: center;
+    margin-right: 10px;
+    margin: auto;
     background: #ffffff;
-    padding: 20px 0;
+    padding: 10em;
     -webkit-box-shadow: 0 0 2px rgba(0,0,0,0.2);
     box-shadow: 0 0 2px rgba(0,0,0,0.2);
 }
 
-.row {
+.rowTask {
     display: block;
     padding: 10px;
     text-align: center;
@@ -17,24 +18,25 @@
     overflow: hidden;
 }
 
-.half {
+.halfTask {
     width: 50%;
     float: left;
 }
 
-.content {
+.contentTask {
     background: #fff;
 }
-/* logo 
-h1 {
-    font-family: 'Rokkitt', sans-serif;
+/* logo */
+
+.logoTask {
+    font-family: 'Lobster', cursive;
     color: #666;
     text-align: center;
     font-weight: 400;
     margin: 0;
 }
 
-.tagline {
+.taglineTask {
     margin-top: -10px;
     text-align: center;
     padding: 5px 20px;
@@ -151,13 +153,13 @@ button {
     padding-left: 30px;
     padding-right: 15px;
 }
-/*
-.icon {
+
+.iconTask {
     position: absolute;
     top: 30%;
     left: 10px;
     font-size: 20px;
-}*/
+}
 
 .taskAdd {
     background: #444;

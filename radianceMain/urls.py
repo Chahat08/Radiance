@@ -20,8 +20,6 @@ from users import views as user_views
 from django.contrib.auth import views as auth_views
 from django.conf.urls.static import static
 from django.conf import settings
-from django.conf.urls import url
-from task_list.views import index
 
 
 
@@ -29,7 +27,6 @@ from task_list.views import index
 urlpatterns = [
 	path('admin/', admin.site.urls),
 	path('', include('tasks.urls')),
-    url(r'^$', index, name="TodoList"),
 	path('users/', user_views.users_list, name='users_list'),
 	path('users/<slug>/', user_views.profile_view, name='profile_view'),
 	path('friends/', user_views.friend_list, name='friend_list'),
