@@ -125,7 +125,6 @@ nav {
 .icon__top {
     font-size: 1.5625rem;
     font-weight: 400;
-    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
 
@@ -133,7 +132,6 @@ nav {
     font-size: 2rem;
     font-weight: 400;
     color: var(--lightyellow);
-    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
 .placeholder__space {
