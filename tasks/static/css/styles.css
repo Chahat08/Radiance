@@ -78,15 +78,25 @@ nav {
 }
 
 .links {
-    margin-left: auto;
+     margin-left: auto;
+     display: inline-block;
 }
 
-    .links a, .links button {
+    .links a{
         font-size: 1.25rem;
         font-weight: 400;
+        margin-right: 50px;
         -webkit-transition: var(--transition);
         -o-transition: var(--transition);
         transition: var(--transition);
+    }
+    .links button {
+        background-color: var(--yellow); /* Blue background */
+        border: none; /* Remove borders */
+        color: white; /* White text */
+        font-size: 10px; /* Set a font size */
+        margin-right: 50px;
+        cursor: pointer;
     }
 
     .links a {
@@ -96,6 +106,7 @@ nav {
         .links a:hover {
             color: var(--yellow);
         }
+
 
 .button__med {
     border: none;
@@ -173,8 +184,12 @@ nav {
     -ms-grid-column-span: 6;
     grid-column: 2 / span 6;
 }
-
-
+.login__form p, a{
+    color: var(--yellow);
+}
+.login__form h1{
+    color: var(--orange);
+}
 @media only screen and (max-width: 1100px) {
     .icon img {
         height: 55px;
@@ -212,3 +227,4 @@ nav {
         margin-bottom: 20px;
     }
 }
+
