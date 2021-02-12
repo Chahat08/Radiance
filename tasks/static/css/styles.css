@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 4 version
+*/
+
 @import url('https://fonts.googleapis.com/css2?family=Cabin+Sketch&family=Lobster&family=Pacifico&display=swap');
 
 :root {
@@ -14,7 +21,9 @@
     --lightyellow: #fff6c7;
     --transition: all 0.3s ease 0s;
 }
+
 * {
+    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -26,22 +35,15 @@ html, body {
 }
 
 body {
-    background: linear-gradient(
-            to bottom,
-           var(--grey29),
-            var(--grey20)
-        ),
-        url(/static/img/Untitled-Artwork.png);
-
+    background: -webkit-gradient( linear, left top, left bottom, from(var(--grey29)), to(var(--grey20)) ), url(/static/img/Untitled-Artwork.png);
+    background: -o-linear-gradient( top, var(--grey29), var(--grey20) ), url(/static/img/Untitled-Artwork.png);
+    background: linear-gradient( to bottom, var(--grey29), var(--grey20) ), url(/static/img/Untitled-Artwork.png);
     background-position: center;
     background-repeat: no-repeat;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
 }
 
-p, a, button{
+p, a, button {
     font-family: "Lobster", sans-serif;
     color: var(--grey6);
     text-decoration: none;
@@ -53,16 +55,24 @@ a, button, .logo {
 
 main {
     height: 100%;
+    display: -ms-grid;
     display: grid;
+    -ms-grid-columns: minmax(60px, 1fr) (minmax(50px, 190px))[6] minmax(60px, 1fr);
     grid-template-columns: minmax(60px, 1fr) repeat(6, minmax(50px, 190px)) minmax(60px, 1fr);
 }
 
-header{
+header {
+    -ms-grid-column: 2;
+    -ms-grid-column-span: 6;
     grid-column: 2 / span 6;
 }
 
 nav {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     height: 120px;
 }
@@ -71,32 +81,38 @@ nav {
     margin-left: auto;
 }
 
-.links a, .links button {
-    font-size: 1.25rem;
-    font-weight: 400;
-    transition: var(--transition);
-}
+    .links a, .links button {
+        font-size: 1.25rem;
+        font-weight: 400;
+        -webkit-transition: var(--transition);
+        -o-transition: var(--transition);
+        transition: var(--transition);
+    }
 
-.links a {
-    margin-right: 50px;
-}
+    .links a {
+        margin-right: 50px;
+    }
 
-.links a:hover {
-    color: var(--yellow);
-}
+        .links a:hover {
+            color: var(--yellow);
+        }
 
 .button__med {
     border: none;
     background-color: var(--yellow);
     padding: 8px 25px;
+    -webkit-transition: var(--transition);
+    -o-transition: var(--transition);
     transition: var(--transition);
 }
 
-.button__med:hover{
-    background-color: var(--orange);
-}
+    .button__med:hover {
+        background-color: var(--orange);
+    }
 
-.info{
+.info {
+    -ms-grid-column: 2;
+    -ms-grid-column-span: 6;
     grid-column: 2 / span 6;
 }
 
@@ -109,12 +125,18 @@ nav {
 }
 
 .icons {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     margin-top: 55px;
 }
 
 .icon {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
 }
 
@@ -140,12 +162,14 @@ nav {
 }
 
 .placeholder__space {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     margin-top: 250px;
 }
 
-@media only screen and (max-width: 1100px){
-    .icon img{
+@media only screen and (max-width: 1100px) {
+    .icon img {
         height: 55px;
         width: auto;
     }
@@ -161,16 +185,22 @@ nav {
     .hero__font {
         font-size: 2.1875rem;
     }
-
 }
 
-@media only screen and (max-width: 650px){
-    .info{
+@media only screen and (max-width: 650px) {
+    .info {
+        -ms-grid-column: 2;
+        -ms-grid-column-span: 6;
         grid-column: 2 / span 6;
     }
+
     .icons {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
         flex-direction: column;
     }
+
     .icon {
         margin-bottom: 20px;
     }
