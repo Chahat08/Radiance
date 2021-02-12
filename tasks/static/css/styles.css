@@ -195,6 +195,12 @@ nav {
     -ms-grid-column: 2;
     -ms-grid-column-span: 3;
     grid-column: 2 / span 3;
+    display: flex;
+    /*float: left;*/
+    overflow: scroll;
+    justify-content: space-between;
+    align-items:center;
+    flex-wrap: wrap;
 }
 
 .feed p, a {
@@ -203,6 +209,17 @@ nav {
 
 .feed h1 {
     color: var(--orange);
+}
+
+.tasks {
+    -ms-grid-column: 5;
+    -ms-grid-column-span: 3;
+    grid-column: 5 / span 3;
+    display: flex;
+    overflow: scroll;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 @media only screen and (max-width: 1100px) {

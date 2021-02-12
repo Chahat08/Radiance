@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from .forms import NewCommentForm, NewPostForm
 from django.views.generic import ListView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from .models import Post, Comments, Like
+from .models import Post, Comments, Like, TodoList, Category
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 import json
@@ -41,6 +41,8 @@ class UserPostListView(LoginRequiredMixin, ListView):
 	def get_queryset(self):
 		user = get_object_or_404(User, username=self.kwargs.get('username'))
 		return Post.objects.filter(user_name=user).order_by('-date_posted')
+
+
 
 
 @login_required
@@ -126,4 +128,23 @@ def like(request):
     }
 	response = json.dumps(resp)
 	return HttpResponse(response, content_type = "application/json")
+
+def index(request):
+    todos = TodoList.objects.all()
+    categories = Category.objects.all()
+    if request.method == "POST":
+        if "taskAdd" in request.POST:
+            title = request.POST["description"]
+            date = str(request.POST["date"])
+            category = request.POST["category_select"]
+            content = title + " -- " + date + " " + category
+            Todo = TodoList(title=title, content=content, due_date=date, category=Category.objects.get(name=category))
+            Todo.save()
+            return redirect("/")
+        if "taskDelete" in request.POST:
+            checkedlist = request.POST["checkedbox"]
+            for todo_id in checkedlist:
+                todo = TodoList.objects.get(id=int(todo_id))
+                todo.delete()
+    return render(request, "index.html", {"todos": todos, "categories":categories})
 
