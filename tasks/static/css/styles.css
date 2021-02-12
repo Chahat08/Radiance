@@ -6,7 +6,12 @@
     --grey6: #F2F2F2;
     --grey5: rgba(224,224,224,1);
     --grey2: rgba(79,79,79,1);
-    --grey62: rgba(224,224,224,0.2);
+    --grey29: rgba(79,79,79,0.9);
+    --grey20: rgba(79,79,79,0.0);
+    --yellow: #e5b02d;
+    --orange: #eb7c2d;
+    --purple: #e0b5ff;
+    --lightyellow: #fff6c7;
     --transition: all 0.3s ease 0s;
 }
 * {
@@ -22,10 +27,11 @@ html, body {
 
 body {
     background: linear-gradient(
-           var(--grey62),
-            var(--grey62)
+            to bottom,
+           var(--grey29),
+            var(--grey20)
         ),
-        url(/static/img/radiance.jpg);
+        url(/static/img/Untitled-Artwork.png);
 
     background-position: center;
     background-repeat: no-repeat;
@@ -48,5 +54,87 @@ a, button, .logo {
 main {
     height: 100%;
     display: grid;
-    grid-template-columns: minmax(60px, 1fr);
+    grid-template-columns: minmax(60px, 1fr) repeat(6, minmax(50px, 190px)) minmax(60px, 1fr);
+}
+
+header{
+    grid-column: 2 / span 6;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    height: 120px;
+}
+
+.links {
+    margin-left: auto;
+}
+
+.links a, .links button {
+    font-size: 1.25rem;
+    font-weight: 400;
+    transition: var(--transition);
+}
+
+.links a {
+    margin-right: 50px;
+}
+
+.links a:hover {
+    color: var(--yellow);
+}
+
+.button__med {
+    border: none;
+    background-color: var(--yellow);
+    padding: 8px 25px;
+    transition: var(--transition);
+}
+
+.button__med:hover{
+    background-color: var(--orange);
+}
+
+.info{
+    grid-column: 2 / span 6;
+}
+
+.hero__font {
+    color: var(--grey6);
+    font-family: 'Cabin Sketch', cursive;
+    font-weight: 400;
+    font-size: 4.375rem;
+    /*margin-top: 10px;*/
+}
+
+.icons {
+    display: flex;
+    margin-top: 55px;
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+}
+
+.icon__info {
+    margin: 0 80px 0 20px;
+}
+
+.icon__top{
+    font-size: 1.5625rem;
+    font-weight: 400;
+}
+
+
+.icon__bottom {
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--lightyellow);
+}
+
+.placeholder__space {
+    display: flex;
+    margin-top: 310px;
 }
