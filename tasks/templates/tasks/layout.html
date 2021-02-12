@@ -28,13 +28,16 @@
     <main>
         <header>
             <nav>
-                <img src="{% static 'img/Radiance.svg' %}" />
+                <a href="{% url 'home' %}">
+                    <img src="{% static 'img/Radiance.svg' %}" />
+                </a>
                 <div class="links">
                     {% if user.is_authenticated %}
                     <a href="{% url 'friend_list' %}">Friends</a>
                     <a href="{% url 'my_profile' %}">Profile</a>
                     <a href="{% url 'post-create' %}">Create Post</a>
                     <a href="{% url 'logout' %}">Logout</a>
+                    {% block searchform %}{% endblock searchform %}
                     {% else %}
                     <a href="{% url 'register' %}">Register</a>
                     <a href="{% url 'login' %}">Login</a>

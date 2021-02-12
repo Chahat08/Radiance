@@ -168,6 +168,13 @@ nav {
     margin-top: 250px;
 }
 
+.login__form {
+    -ms-grid-column: 2;
+    -ms-grid-column-span: 6;
+    grid-column: 2 / span 6;
+}
+
+
 @media only screen and (max-width: 1100px) {
     .icon img {
         height: 55px;
