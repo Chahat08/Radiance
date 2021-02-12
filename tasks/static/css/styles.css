@@ -190,6 +190,21 @@ nav {
 .login__form h1{
     color: var(--orange);
 }
+
+.feed {
+    -ms-grid-column: 2;
+    -ms-grid-column-span: 3;
+    grid-column: 2 / span 3;
+}
+
+.feed p, a {
+    color: var(--yellow);
+}
+
+.feed h1 {
+    color: var(--orange);
+}
+
 @media only screen and (max-width: 1100px) {
     .icon img {
         height: 55px;
