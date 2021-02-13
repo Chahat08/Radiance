@@ -7,6 +7,8 @@
 {% block morecss %}{% endblock morecss %}
 {% block content %}
 
+
+
 {% if user.is_authenticated %}
 <div class="feed">
     <div class="container">
@@ -14,9 +16,12 @@
             <div class="col-md-12">
                 <div class="card card-signin my-5">
                     <div class="card-body">
-                        <h4 class="text-dark;" style="font-family: Lobster, cursive; text-align: center;">
+                       
+                        <h3 class="text-dark;" style="font-family: Lobster, cursive; text-align: center; float: left;">
                             Your feed
-                        </h4>
+                        </h3>
+
+                        <a href="{% url 'post-create' %}" class="btn btn-warning" style="float: right;"><i class="fa fa-plus"></i></a>
                     </div>
                 </div>
                 {% for post in posts %}
@@ -71,41 +76,102 @@
 <!--tasklist-->
 
 <div class="tasks">
-    <header class="headerTask">
-        <h1 class="hTask">To Do List</h1>
-        <input type="text" class="inputTask" id="myInput" placeholder="Things to be done..." />
-        <span class="addBtn" id="add_button">Add</span>
-    </header>
-    <ul id="myUL">
-    </ul>
+
+    <!--<div class="listTask">
+        <ul id="myUL" class="ulTask">
+        </ul>
+    </div>-->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-signin my-5">
+                    <div class="card-body">
+                       
+                       <h3 class="text-dark;" style="font-family: Lobster, cursive; text-align: center; float: left;">
+                            Your tasks
+                        </h3>
+                       
+                        <a href="{% url 'task-create' %}"   class="btn btn-warning" style="float: right;"><i class="fa fa-plus"></i></a>
+                       
+                      
+                    </div>
+                </div>
+                {% for task in tasks %}
+                <div class="card card-signin my-5" id="{{ task.title}}">
+                    <h4 class="card-header" id="title-{{ task.title }}" style="font-family: Lobster, cursive;">{{ task.title }}</h4>
+                    <div class="card-body">
+                        <h5 class="card-title" id="due-{{task.title}}">{{ task.task }}</h5>
+                        <p class="card-text" style="color: #eb7c2d; font-family: Lobster, cursive;">Reward: {{ task.reward }}</p>
+                        <p class="card-text" id="task-{{task.title}}" style="color: dimgrey; font-size: larger;">Due on: {{ task.dueDate }}</p>
+
+                        <form action="/del/{{ task.id }}/" method="POST" style=" padding-right: 4%; padding-bottom: 3%;">
+
+                            <label class="checkbox-inline" style="font-size: 20px; color: forestgreen; font-family: Lobster, cursive;">
+                                <input type="checkbox" value="" style="float: left; width: 25px; height: 25px" id="chkBox" onclick="showAlert('{{ task.reward }}')">&nbsp;Done&nbsp;&nbsp;
+                            </label>
+                            <label class="checkbox-inline" style="font-size: 20px; color: goldenrod; font-family: Lobster, cursive;">
+                                <input type="checkbox" value="" style="float: left; width: 25px; height: 25px" id="chkBox1" onclick="hideDiv('{{ task.title }}');">&nbsp;Hide&nbsp;&nbsp;
+                            </label>
+
+                            {% csrf_token %}
+                            <button value="remove" id="pbtn2" type="submit" class="btn btn-danger" style="float: right;"><i class="fa fa-trash"></i> &nbsp; Delete</button>
+                        </form>
+
+                    </div>
+
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function hideDiv(id) {
+            var dvCard = document.getElementById(id);
+            dvCard.style.display = chkBox1.checked ? "block" : "none";
+        }
+        function showAlert(id) {
+            alert("CONGRATULATIONS!\nThe reward for completing this task is:\n".concat(id).concat("\nEnjoy! You deserve it!"));
+        }
+    </script>
+    <!--
+    <script type="text/javascript">
+        function showAlert(id){
+            alert(id);
+        }
+    </script>-->
+
+
+
 </div>
 
-{% if is_paginated %}
-    {% if page_obj.has_previous %}
+
+            {% if is_paginated %}
+            {% if page_obj.has_previous %}
 <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
 <a class="btn btn-outline-info mb-4"
    href="?page={{ page_obj.previous_page_number }}">Previous</a>
-    {% endif %}
-    {% for num in page_obj.paginator.page_range %}
-        {% if page_obj.number == num %}
+            {% endif %}
+            {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
 <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
-        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
 <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
-        {% endif %}
-    {% endfor %}
+            {% endif %}
+            {% endfor %}
 
-    {% if page_obj.has_next %}
+            {% if page_obj.has_next %}
 <a class="btn btn-outline-info mb-4"
    href="?page={{ page_obj.next_page_number }}">Next</a>
 <a class="btn btn-outline-info mb-4"
    href="?page={{ page_obj.paginator.num_pages }}">Last</a>
-    {% endif %}
+            {% endif %}
 
-{% endif %}
+            {% endif %}
 
 
 
-{% else %}
+            {% else %}
 
 <section class="info">
     <h1 class="hero__font">The one-stop platform to help you manage all your tasks</h1>
@@ -141,13 +207,14 @@
     </div>
     <div class="placeholder__space"></div>
 </section>
-{% endif %}
+            {% endif %}
 
-{% endblock content %}
+            {% endblock content %}
 
-{% block jsfiles %}
+
+            {% block jsfiles %}
 <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
-{% endblock jsfiles %}
+            {% endblock jsfiles %}
 
 
 

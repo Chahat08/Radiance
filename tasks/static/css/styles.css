@@ -222,6 +222,30 @@ nav {
     justify-content: space-between;
 }
 
+/*scrollbar styling*/
+/* width */
+*::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+*::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+*::-webkit-scrollbar-thumb {
+    background: var(--yellow);
+}
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: var(--orange);
+    }
+
+
+
+
 @media only screen and (max-width: 1100px) {
     .icon img {
         height: 55px;
@@ -259,4 +283,3 @@ nav {
         margin-bottom: 20px;
     }
 }
-

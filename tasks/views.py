@@ -4,10 +4,10 @@ from django.urls import reverse
 from django.contrib import messages
 from django.core.paginator import Paginator
 from django.contrib.auth.models import User
-from .forms import NewCommentForm, NewPostForm
+from .forms import NewCommentForm, NewPostForm, NewTaskForm
 from django.views.generic import ListView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from .models import Post, Comments, Like, TodoList, Category
+from .models import Post, Comments, Like, TaskList
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 import json
@@ -20,6 +20,7 @@ class PostListView(ListView):
 	paginate_by = 10
 	def get_context_data(self, **kwargs):
 		context = super(PostListView, self).get_context_data(**kwargs)
+		context['tasks'] = TaskList.objects.order_by('-dueDate')
 		if self.request.user.is_authenticated:
 			liked = [i for i in Post.objects.all() if Like.objects.filter(user = self.request.user, post=i)]
 			context['liked_post'] = liked
@@ -147,4 +148,36 @@ def index(request):
                 todo = TodoList.objects.get(id=int(todo_id))
                 todo.delete()
     return render(request, "index.html", {"todos": todos, "categories":categories})
+
+'''class TaskListView(ListView):
+	model = TaskList
+	template_name = 'tasks/home.html'
+	context_object_name = 'tasks'
+	ordering = ['-dueDate']
+	paginate_by = 10
+	def get_context_data(self, **kwargs):
+		context = super(TaskListView, self).get_context_data(**kwargs)
+		return context'''
+
+def NewTask(request):
+	todos = TaskList.objects.order_by('dueDate')
+	posts = Post.objects.order_by('-date_posted')
+	if request.method == "POST":
+			form = NewTaskForm(request.POST, request.FILES)
+			if form.is_valid():
+				data = form.save(commit=False)
+				data.save()
+				messages.success(request, f'Task Added Successfully')
+				return redirect('home')
+				#return render(request, 'tasks/home.html', {'posts':posts, 'tasks':todos})
+	else:
+		form = NewTaskForm()
+	return render(request, 'tasks/create_task.html', {'form':form, 'tasks':todos})
+
+def remove(request, item_id): 
+    item = TaskList.objects.get(id=item_id) 
+    item.delete() 
+    messages.info(request, "Task Deleted") 
+    return redirect('home')
+
 

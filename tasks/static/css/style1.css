@@ -46,7 +46,9 @@
 ul li {
     cursor: pointer;
     position: relative;
-    padding: 12px 8px 12px 40px;
+    width: 100%;
+    flex-shrink: 0;
+    /*padding: 12px 8px 12px 40px;*/
     list-style-type: none;
     background: #eee;
     font-size: 14px;
