@@ -1,5 +1,5 @@
 # Radiance
-**A social networking platform that helps you manage all your tasks**
+**A social networking platform that helps you manage all your tasks**<br>
 _Built using the Django Framework_
 
 
