@@ -24,3 +24,6 @@ You can fill up the task-list by adding your own tasks, marking them as done, or
 7. Django-crispy-forms
 8. Procreate (for drawing out the background and favicon)
 9. Figma ([layout for Radiance](https://www.figma.com/file/Cv9aNQSRbaMq3miZ2QW33d/Radiance?node-id=1%3A2))
+
+## Images
+![home.png](https://github.com/Chahat08/Radiance/blob//home.png?raw=true)
