@@ -10,6 +10,7 @@
   </button>
 </form>
 {% endblock searchform %} {% block content %}
+<div class="login__form">
 <div class="container">
   <div class="row">
     <div class="col-md-8">
@@ -73,6 +74,7 @@
     </div>
   </div>
 </div>
+    </div>
 {% if is_paginated %}
 	{% if page_obj.has_previous %}
 		<a class="btn btn-outline-info mb-4" href="?page=1">First</a>
