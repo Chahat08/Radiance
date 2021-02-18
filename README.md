@@ -27,4 +27,4 @@ You can fill up the task-list by adding your own tasks, marking them as done, or
 
 ## Images
 ![home.png](https://github.com/Chahat08/Radiance/blob/master/project_images/home.png?raw=true)
-<img src = "https://github.com/Chahat08/Radiance/blob/master/project_images/Screenshopng.png" style="width=50%; height=auto;">
+<img src = "https://github.com/Chahat08/Radiance/blob/master/project_images/Screenshopng.png" style="width: 50%; height: auto;">
